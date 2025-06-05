@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Vendor\VendorMainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,9 +54,16 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
    
 });
 
-Route::get('/vendor/dashboard', function () {
-    return view('vendor');
-})->middleware(['auth', 'verified', 'rolemanager:vendor'])->name('vendor');
+//Vendor routes
+Route::middleware(['auth', 'verified', 'rolemanager:vendor'])->group(func
+tion () {
+    Route::prefix('vendor')->group(function (){
+        Route::controller(vendorMainController::class)->group(function (){
+            Route::get('/dashboard', 'index')->name('vendor');
+        });
+    });
+   
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
