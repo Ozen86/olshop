@@ -25,7 +25,7 @@
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.html">
-          <span class="align-middle">AdminKit</span>
+          <span class="align-middle">Vendor Dashboard</span>
         </a>
 
 				<ul class="sidebar-nav">
@@ -33,32 +33,48 @@
 						Main
 					</li>
 
-					<li class="sidebar-item {{request()->routeIs('admin')?'active':''}}">
-						<a class="sidebar-link" href="{{route('admin')}}"> 
+					<li class="sidebar-item {{request()->routeIs('vendor')?'active':''}}">
+						<a class="sidebar-link" href="{{route('vendor')}}"> 
               		<i class="align-middle" data-feather="user"></i> <span class="align-middle">Dashboard</span>
             		</a>
 					</li>
 
-					<li class="sidebar-item {{request()->routeIs('admin.settings')?'active':''}}">
-						<a class="sidebar-link" href="{{route('admin.settings')}}">	
-              		<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Settings</span>
+					<li class="sidebar-item {{request()->routeIs('vendor.order.history')?'active':''}}">
+						<a class="sidebar-link" href="{{route('vendor.order.history')}}"> 
+              		<i class="align-middle" data-feather="list"></i> <span class="align-middle">Order History</span>
             		</a>
 					</li>
 
 					
-					<!-- cat section -->
+					<!-- store section -->
 					<li class="sidebar-header">
-						Category
+						Store
 					</li>
 
-					<li class="sidebar-item {{request()->routeIs('category.create')?'active':''}}">
-						<a class="sidebar-link" href="{{route('category.create')}}"> 
+					<li class="sidebar-item {{request()->routeIs('vendor.store')?'active':''}}">
+						<a class="sidebar-link" href="{{route('vendor.store')}}"> 
               		<i class="align-middle" data-feather="plus"></i> <span class="align-middle">Create</span>
             		</a>
 					</li>
 
-					<li class="sidebar-item {{request()->routeIs('category.manage')?'active':''}}">
-						<a class="sidebar-link" href="{{route('category.manage')}}"> 
+					<li class="sidebar-item {{request()->routeIs('vendor.store.manage')?'active':''}}">
+						<a class="sidebar-link" href="{{route('vendor.store.manage')}}"> 
+              		<i class="align-middle" data-feather="list"></i> <span class="align-middle">Manage</span>
+            		</a>
+					</li>
+
+					<li class="sidebar-header">
+						Product
+					</li>
+
+					<li class="sidebar-item {{request()->routeIs('vendor.product')?'active':''}}">
+						<a class="sidebar-link" href="{{route('vendor.product')}}"> 
+              		<i class="align-middle" data-feather="plus"></i> <span class="align-middle">Create</span>
+            		</a>
+					</li>
+
+					<li class="sidebar-item {{request()->routeIs('vendor.product.manage')?'active':''}}">
+						<a class="sidebar-link" href="{{route('vendor.product.manage')}}"> 
               		<i class="align-middle" data-feather="list"></i> <span class="align-middle">Manage</span>
             		</a>
 					</li>
@@ -66,7 +82,7 @@
 					
 				</ul>
 
-				<div class="sidebar-cta">
+				<!-- <div class="sidebar-cta">
 					<div class="sidebar-cta-content">
 						<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
 						<div class="mb-3 text-sm">
@@ -76,7 +92,7 @@
 							<a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</nav>
 
@@ -244,8 +260,6 @@
 
 			<main class="content">
 				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3">Blank Page</h1>
 
 					@yield('vendor_layout')
 
