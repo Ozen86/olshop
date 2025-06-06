@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Customer\CustomerMainController;
+use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vendor\VendorMainController;
 use App\Http\Controllers\Vendor\VendorProductController;
@@ -17,10 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'rolemanager:customer'])->name('dashboard');
 
 //admin routes
 Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () {
@@ -53,6 +50,10 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
             Route::get('/discount/create', 'index')->name('discount.create');
             Route::get('/discount/manage', 'manage')->name('discount.manage');
         });
+
+        Route::controller(MainCategoryController::class)->group(function (){
+            Route::get('/store/category', 'storecat')->name('store.cat');
+        });
     });
    
 });
@@ -84,6 +85,9 @@ Route::middleware(['auth', 'verified', 'rolemanager:customer'])->group(function 
     Route::prefix('user')->group(function (){
         Route::controller(CustomerMainController::class)->group(function (){
             Route::get('/dashboard', 'index')->name('dashboard');
+            Route::get('/order/history', 'history')->name('customer.history');
+            Route::get('/setting/payment', 'payment')->name('customer.payment');
+            Route::get('/affiliate', 'affiliate')->name('customer.affiliate');
         });
 
     });
