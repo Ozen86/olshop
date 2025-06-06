@@ -9,9 +9,11 @@ class MainCategoryController extends Controller
 {
     public function storecat(Request $request){
         $validate_data = $request->validate([
-            'çategory_name' => 'unique:categories|max:100',
+            'category_name' => 'required|unique:categories|max:100'
         ]);
 
         Category::create($validate_data);
+
+        return redirect()->back();
     }
 }

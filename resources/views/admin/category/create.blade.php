@@ -13,7 +13,10 @@ Admin Panel
                 <form action="{{route('store.cat')}}" method="POST">
                 @csrf
                 <label for="category_name" class="fw-bold mb-2">Give Name For Your Category</label>
-                <input type="text" class="form-control mb-2" placeholder=".....">
+                <input type="text" class="form-control mb-2"  name="category_name" id="category_name" placeholder="Insert Category Name">
+                 @error('category_name')
+                    <div class="text-danger mb-2">{{ $message }}</div>
+                @enderror
                 <button type="sumbit" class="btn btn-primary w-100">Add Category</button>
                 </form>
             </div>

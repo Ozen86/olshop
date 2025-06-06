@@ -52,7 +52,7 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         });
 
         Route::controller(MainCategoryController::class)->group(function (){
-            Route::get('/store/category', 'storecat')->name('store.cat');
+            Route::post('/store/category', 'storecat')->name('store.cat');
         });
     });
    
