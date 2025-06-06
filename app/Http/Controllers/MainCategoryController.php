@@ -14,6 +14,11 @@ class MainCategoryController extends Controller
 
         Category::create($validate_data);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Category Added Successfully');
+    }
+
+    public function showcat($id){
+        $category_info = Category::find($id);
+        return view('admin.category.edit', compact('category_info'));
     }
 }

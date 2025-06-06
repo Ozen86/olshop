@@ -20,19 +20,12 @@ Admin Panel
                     </div>
                 @endif
                 
-                <form action="{{ route('store.cat') }}" method="POST">
+                <form action="" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="category_name" class="form-label fw-bold">Give Name For Your Category</label>
                         <input type="text" class="form-control @error('category_name') is-invalid @enderror" 
-                               name="category_name" id="category_name" 
-                               placeholder="Insert Category Name" 
-                               value="{{ old('category_name') }}">
-                        @error('category_name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                               name="category_name" id="category_name" value="{{$category_info->category_name}}">
                     </div>
                     
                     <button type="submit" class="btn btn-primary w-100">Add Category</button>
@@ -42,20 +35,4 @@ Admin Panel
     </div>
 </div>
 
-{{-- JavaScript untuk auto-hide success message --}}
-@if(session('success'))
-<script>
-    // Auto-hide success alert after 3 seconds
-    setTimeout(function() {
-        const alert = document.getElementById('success-alert');
-        if (alert) {
-            alert.style.transition = 'opacity 0.5s ease-out';
-            alert.style.opacity = '0';
-            setTimeout(function() {
-                alert.remove();
-            }, 500);
-        }
-    }, 3000); // 3000ms = 3 seconds
-</script>
-@endif
 @endsection

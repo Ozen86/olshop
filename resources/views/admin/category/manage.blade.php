@@ -22,12 +22,12 @@ Admin Panel
 
                         <tbody>
                             @foreach ($categories as $cat)
-                            @endforeach
                             <tr>
                                 <td>{{$cat->id}}</td>
                                 <td>{{$cat->category_name}}</td>
-                                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                <td><a href="{{route('show.cat', $cat->id)}}" class="btn btn-secondary">Edtt</a><a href="#" class="btn btn-danger">Delete</a></td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>     
