@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Customer\CustomerMainController;
 use App\Http\Controllers\MainCategoryController;
+use App\Http\Controllers\MainSubCatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vendor\VendorMainController;
 use App\Http\Controllers\Vendor\VendorProductController;
@@ -54,9 +55,31 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         Route::controller(MainCategoryController::class)->group(function (){
             Route::post('/store/category', 'storecat')->name('store.cat');
             Route::get('/category/{id}', 'showcat')->name('show.cat');
+            Route::put('/category/update/{id}', 'updatecat')->name('update.cat');
+            Route::get('/category/manage', 'manage')->name('category.manage');
+            Route::delete('/category/delete/{id}', 'deletecat')->name('delete.cat');
+        });
+
+        Route::controller(MainSubCatController::class)->group(function (){
+            Route::post('/store/subcategory', 'storesubcat')->name('store.subcat');
+            Route::get('/admin/subcategory', 'index')->name('admin.subcategory.index'); // Tambah ini jika ada
+            Route::get('/admin/subcategory/create', 'create')->name('admin.subcategory.create');
+            Route::get('/admin/subcategory/manage', 'manage')->name('admin.subcategory.manage');
+            Route::get('/subcategory/{id}', 'showsubcat')->name('show.subcat');
+            Route::put('/subcategory/update/{id}', 'updatesubcat')->name('update.subcat');
+            Route::delete('/subcategory/delete/{id}', 'deletesubcat')->name('delete.subcat');
         });
     });
    
+});
+
+Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::controller(MainSubCatController::class)->group(function () {
+            Route::get('/store/subcategory', 'index')->name('subcategory.create');
+            Route::post('/store/subcategory', 'storesubcat')->name('store.subcat');
+        });
+    });
 });
 
 
