@@ -28,8 +28,12 @@ Admin Panel
                                 <td>{{ $subcat->category->category_name }}</td>
                                 <td>
                                     <div class="d-flex gap-2"> <!-- Tambahkan flex container dengan gap -->
-                                        <a href="" class="btn btn-secondary">Edit</a>
-                                        
+                                        <a href="{{ route('show.subcat', $subcat->id) }}" class="btn btn-secondary">Edit</a>
+                                        <form action="{{ route('delete.subcat', $subcat->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
